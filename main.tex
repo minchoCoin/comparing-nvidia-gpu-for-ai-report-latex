@@ -1,0 +1,47 @@
+\documentclass{article}
+
+\usepackage{kotex}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{hhline}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage[htt]{hyphenat}
+\usepackage{hyperref}
+
+\title{오픈 소스 기반의 그림 인공지능과 거대 언어 모델 사용을 위한 일반 소비자용 NVIDIA GPU 비교:서베이}
+\author{전기컴퓨터공학부 정보컴퓨터공학전공 201924451 김태훈}
+%\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+그림 인공지능과 거대 언어모델로 인공지능 시대가 열렸다. 이러한 모델을
+실행하는데 있어서 ChatGPT 같은 것이 있어 웹에서 편리하게 실행할 수 있지만, 회사
+등에서는 정보유출 등의 이유로 로컬에서 실행할 필요가 있다. 최근 Stable Diffusion 과
+LLaMA 등의 오픈소스 모델공개로, 인터넷 연결없이 그림 인공지능과 거대 언어모델을
+사용할 수 있게 되었다. 그러나 로컬에서 실행하기 위해서는 행렬 연산과 부동 소수점
+연산에 특화된 GPU 가 필요하다. 본 서베이에서는 Stable Diffusion 과 LLaMA-13b 4bit 를
+실행하는데 어떤 GPU 가 좋고 GPU 간 성능 차이와 가격 대비 성능과 가격 상승분과 성능
+상승분이 비슷할지 알아보고자 한다.
+\end{abstract}
+
+\input{01_intro}
+\input{02_GPU}
+\input{03_model}
+\input{04_survey}
+\input{05_GPU_benchmark}
+\input{06_conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,89 @@
+\section{GPU 성능비교}
+\subsection{GPU별 Stable Diffusion 성능}
+아래 \tableautorefname{\ref{stablegpubenchmarktable}}\cite{jarred2023stable}은 $512\times 512$ 이미지를 100 단계로 생성하는 것을 10 번 실행한 것의
+iteration per second 의 평균값이다. 이미지 생성을 가속화해주는 Xformers\cite{xFormers2022}를 사용한
+결과이다.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[]
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+GPU           & \multicolumn{1}{l|}{Iteration/sec} & \multicolumn{1}{l|}{가격(US Dollar)} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}가격당 성능(Iteration/sec/USDollar)\\   (소수점 5째자리에서 반올림)\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}RTX 3060 대비Iteration/sec\\   (단위:배, 3째자리에서 반올림)\end{tabular}} \\ \hline
+RTX 4090      & 28.923                             & 1599                               & 0.0181                                                                                                               & 4                                                                                                                \\ \hline
+RTX 4080      & 23.504                             & 1199                               & 0.0196                                                                                                               & 3.25                                                                                                             \\ \hline
+RTX 4070Ti    & 20.697                             & 799                                & 0.0259                                                                                                               & 2.86                                                                                                             \\ \hline
+RTX 3090 Ti   & 19.238                             & 1999                               & 0.0096                                                                                                               & 2.66                                                                                                             \\ \hline
+RTX 3090      & 17.789                             & 1499                               & 0.0119                                                                                                               & 2.46                                                                                                             \\ \hline
+RTX 3080 Ti   & 17.429                             & 1199                               & 0.0145                                                                                                               & 2.41                                                                                                             \\ \hline
+RTX 3080 12GB & 14.459                             & 799                                & 0.0181                                                                                                               & 2                                                                                                                \\ \hline
+RTX 3080      & 14.101                             & 699                                & 0.0202                                                                                                               & 1.95                                                                                                             \\ \hline
+RTX 3070 Ti   & 11.637                             & 599                                & 0.0194                                                                                                               & 1.61                                                                                                             \\ \hline
+RTX 3070      & 10.937                             & 499                                & 0.0219                                                                                                               & 1.51                                                                                                             \\ \hline
+RTX 3060 Ti   & 9.146                              & 399                                & 0.0229                                                                                                               & 1.26                                                                                                             \\ \hline
+RTX 3060      & 7.239                              & 329                                & 0.0220                                                                                                               & 1                                                                                                                \\ \hline
+RTX 3050      & 4.931                              & 249                                & 0.0198                                                                                                               & 0.68                                                                                                             \\ \hline
+\end{tabular}%
+}
+\caption{\label{stablegpubenchmarktable}GPU별 Stable diffusion Iteration per Second for image generation.}
+\end{table}
+
+\tableautorefname{\ref{stablegpubenchmarktable}}에서 알 수 있듯, image generation에서 RTX 4090이 28.923 iteration/sec로 가장 높고, RTX 3050이 4.931 iteration/sec로 가장 낮다. 또한 가격당 성능은 RTX 4070Ti가 0.0259로 가장 높고, RTX 3090Ti가 0.0096으로 가장 낮다. 또한 RTX 4090은 RTX 3060 대비 4배 더 높은 초당 Iteration을 생성함을 알 수 있다.
+
+아래 \tableautorefname{\ref{stableresolutiongpubenchmarktable}}\cite{jarred2023stable}는 $768\times 432$ 이미지를 $2048\times 1152$ 의 이미지로 25 단계로 거쳐
+바꾸는 것(Image resolution)을 3 개 생성하였을 때 iteration per second 의 값이다. 이미지
+생성을 가속화해주는 Xformers\cite{xFormers2022}를 사용한 결과이다.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[]
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+GPU           & \multicolumn{1}{l|}{Iteration/sec} & \multicolumn{1}{l|}{가격(US Dollar)} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}가격당 성능(Iteration/sec/US Dollar)\\ (소수점 7째자리에서 반올림)\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}RTX 3060 대비 Iteration/sec \\ (단위: 배, 3째자리에서 반올림)\end{tabular}} \\ \hline
+RTX 4090      & 3.641                              & 1599                               & 0.002277                                                                                                        & 7.13                                                                                                          \\ \hline
+RTX 4080      & 2.413                              & 1199                               & 0.002013                                                                                                        & 4.72                                                                                                          \\ \hline
+RTX 4070Ti    & 1.875                              & 799                                & 0.002347                                                                                                        & 3.67                                                                                                          \\ \hline
+RTX 3090 Ti   & 1.558                              & 1999                               & 0.000779                                                                                                        & 3.05                                                                                                          \\ \hline
+RTX 3090      & 1.423                              & 1499                               & 0.000949                                                                                                        & 2.78                                                                                                          \\ \hline
+RTX 3080 Ti   & 1.358                              & 1199                               & 0.001133                                                                                                        & 2.66                                                                                                          \\ \hline
+RTX 3080 12GB & 1.296                              & 799                                & 0.001622                                                                                                        & 2.54                                                                                                          \\ \hline
+RTX 3080      & 1.169                              & 699                                & 0.001672                                                                                                        & 2.29                                                                                                          \\ \hline
+RTX 3070 Ti   & 0.898                              & 599                                & 0.001499                                                                                                        & 1.76                                                                                                          \\ \hline
+RTX 3070      & 0.774                              & 499                                & 0.001551                                                                                                        & 1.51                                                                                                          \\ \hline
+RTX 3060 Ti   & 0.674                              & 399                                & 0.001689                                                                                                        & 1.32                                                                                                          \\ \hline
+RTX 3060      & 0.511                              & 329                                & 0.001553                                                                                                        & 1                                                                                                             \\ \hline
+RTX 3050      & 0.322                              & 249                                & 0.001293                                                                                                        & 0.63                                                                                                          \\ \hline
+\end{tabular}%
+}
+\caption{\label{stableresolutiongpubenchmarktable}GPU별 Stable diffusion Iteration per Second for image resolution.}
+\end{table}
+
+\tableautorefname{\ref{stableresolutiongpubenchmarktable}}에서 알 수 있듯, image resolution에서 RTX 4090이 3.641로 가장 높고 RTX 3050이 0.322로 가장 낮다. 가격당 성능은RTX 4070Ti가 0.002347로 가장 높고 RTX 3090Ti가 0.000779로 가장 낮다. 또한 RTX 3060 대비 RTX 4090이 7.13배 더 높은 초당 iteration을 생성함을 알 수 있다.
+
+\subsection{GPU 별 LLaMA성능}
+아래 \tableautorefname{\ref{llamabenchmarktable}}\cite{jarred2023howtorun}는 LLaMA-13b 4-bit mode를 Text Generation Web UI라는 LLaMA를 쉽게 오프라인에서 브라우저로 실행할 수 있는 환경에서 실행하여 400개 이상의 토큰을 생성했을 때 초당 token생성 개수이다. 아래 벤치마크를 실행한 환경은 Intel Core i9-12900K(CPU), MSI Pro Z690-A WiFi DDR4(Motherboard), Corsair 2x16GB DDR4-3600 CL16(Main Memory), Crucial P5 Plus 2TB(SSD), Windows 11 Pro 64bit(OS) 등이다.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{graphicx}
+\begin{table}[]
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|l|r|r|r|r|}
+\hline
+GPU           & \multicolumn{1}{l|}{Tokens/sec} & \multicolumn{1}{l|}{가격(US Dollar)} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}가격당 성능(Tokens/sec/USDollar) \\ (소수점 5째자리에서 반올림)\end{tabular}} & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}RTX 3060 대비 Tokens/sec \\ (단위: 배, 3째자리에서 반올림)\end{tabular}} \\ \hline
+RTX 4090      & 25.82                           & 1599                               & 0.0161                                                                                                       & 1.33                                                                                                       \\ \hline
+RTX 4080      & 25.44                           & 1199                               & 0.0212                                                                                                       & 1.31                                                                                                       \\ \hline
+RTX 4070Ti    & 25.34                           & 799                                & 0.0317                                                                                                       & 1.3                                                                                                        \\ \hline
+RTX 3090Ti    & 21.48                           & 1999                               & 0.0107                                                                                                       & 1.1                                                                                                        \\ \hline
+RTX 3090      & 20.88                           & 1499                               & 0.0139                                                                                                       & 1.07                                                                                                       \\ \hline
+RTX 3080Ti    & 20.73                           & 1199                               & 0.0173                                                                                                       & 1.06                                                                                                       \\ \hline
+RTX 3080 12GB & 20.48                           & 799                                & 0.0256                                                                                                       & 1.05                                                                                                       \\ \hline
+RTX 3080      & 19.8                            & 699                                & 0.0283                                                                                                       & 1.02                                                                                                       \\ \hline
+RTX 3060      & 19.48                           & 329                                & 0.0592                                                                                                       & 1                                                                                                          \\ \hline
+\end{tabular}%
+}
+\caption{\label{llamabenchmarktable}GPU별 Generated Tokens per sec by LLaMA-13B.}
+\end{table}
+
+\tableautorefname{\ref{llamabenchmarktable}}에서 알 수 있듯, LLaMA를 실행하여 Tokens/sec을 측정하였을 때RTX 4090이 25.82로 가장 높고, RTX 3060이 19.48로 가장 낮다. 가격당 성능은 RTX 3060이 0.0592로 가장 높고, RTX 3090Ti가 0.0107로 가장 낮다. RTX 4090은 RTX 3060대비 1.33배 더 높은 초당 토큰 수를 보여주었다.
